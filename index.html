@@ -1,16 +1,189 @@
 <!doctype html>
-<html lang="th"><head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f7f6f2" />
-  <meta name="description" content="Project Index — คลังรวมลิงก์โปรเจกต์ดิจิทัล เว็บแอป เว็บไซต์ และ Landing Page แยกตามหมวดหมู่ พร้อมลิงก์เข้าชมผลงานจริง" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Project Index — Digital Project Directory" />
-  <meta property="og:description" content="สำรวจโปรเจกต์ดิจิทัลทั้งหมด พร้อมระบบค้นหาและหมวดหมู่ที่ชัดเจน" />
-  <meta property="og:image" content="/og-cover.svg" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <title>Project Index — Digital Project Directory</title>
-</head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta name="description" content="Project Index — ศูนย์รวมผลงานเว็บไซต์ เว็บแอป และโปรเจกต์ดิจิทัล ค้นหาและเข้าชมผลงานได้ในที่เดียว">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Project Index — Digital Projects Directory">
+  <meta property="og:description" content="รวมโปรเจกต์ดิจิทัล แยกตามหมวดหมู่ พร้อมลิงก์เข้าชมผลงานจริง">
+  <meta name="color-scheme" content="light">
+  <title>Project Index — Digital Projects Directory</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23262d29'/%3E%3Cpath d='M17 19h14a14 14 0 010 28H17z' fill='none' stroke='%23f4b65b' stroke-width='7'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#f8f7f3;--paper:#fff;--ink:#26312b;--soft:#58655d;--muted:#78827b;--line:#e4e7df;--accent:#ca803b;--accent-pale:#fff2df;--dark:#25332b;--radius:15px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",Tahoma,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #dc9957;outline-offset:3px}
+    .wrap{width:min(1140px,calc(100% - 48px));margin:0 auto}
+    .site-header{background:rgba(248,247,243,.96);border-bottom:1px solid var(--line)}
+    .header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:inline-flex;align-items:center;gap:12px;font-weight:830;letter-spacing:-.045em;font-size:19px}
+    .brand-mark{display:grid;place-items:center;background:var(--dark);color:#f7c77d;width:37px;height:37px;border-radius:10px;font-size:20px;font-weight:850;letter-spacing:-.12em;padding-right:2px}
+    .header-meta{display:flex;align-items:center;gap:10px;color:#68766c;font-weight:650;font-size:12px}
+    .status-dot{height:7px;width:7px;background:#85a28c;border-radius:50%}
+    .hero{padding:78px 0 72px;border-bottom:1px solid var(--line)}
+    .eyebrow{font-size:11px;letter-spacing:.22em;font-weight:850;color:#b67b43;text-transform:uppercase}
+    h1{margin:18px 0 17px;font-size:clamp(43px,6.5vw,82px);line-height:1.16;letter-spacing:-.075em;font-weight:850}
+    .hero-highlight{color:#c28a55}
+    .hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:32px}
+    .hero-copy{margin:0;max-width:610px;font-size:16px;color:var(--soft);line-height:1.95}
+    .hero-count{min-width:144px;display:flex;align-items:baseline;gap:11px;white-space:nowrap;border-left:2px solid #d6b38f;padding-left:20px}
+    .hero-count strong{font-size:48px;letter-spacing:-.07em;line-height:1}
+    .hero-count span{font-size:12px;color:var(--muted);font-weight:680}
+    .directory{padding:42px 0 86px}
+    .tools{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}
+    .tools-title{font-size:23px;letter-spacing:-.05em;font-weight:850;margin:0}
+    .tools-note{color:#879087;margin:5px 0 0;font-size:12px}
+    .search{display:flex;align-items:center;gap:10px;min-height:48px;width:min(360px,100%);padding:0 13px 0 16px;background:white;border:1px solid #dce0d8;border-radius:10px;color:#7c887f;transition:border-color .2s}
+    .search:focus-within{border-color:#bf9059}
+    .search svg{flex:none}
+    .search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px}
+    .search input:focus-visible{outline:0}
+    .search input::placeholder{color:#929b94}
+    .clear{display:none;place-items:center;flex:none;background:transparent;border:0;color:#77847b;padding:5px;border-radius:5px}
+    .clear.visible{display:grid}
+    .filters{display:flex;flex-wrap:wrap;gap:9px;padding-bottom:27px;border-bottom:1px solid var(--line)}
+    .filter{display:inline-flex;gap:10px;align-items:center;background:white;border:1px solid #dfe3da;color:#566159;min-height:39px;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:760;transition:background .2s,border-color .2s,color .2s}
+    .filter b{font-size:11px;color:#93a095;font-variant-numeric:tabular-nums}
+    .filter:hover:not(.active){background:#f0f0e9}
+    .filter.active{background:var(--dark);border-color:var(--dark);color:#fff}
+    .filter.active b{color:#c4d9c6}
+    .group{margin-top:51px;scroll-margin-top:20px}
+    .group-head{display:flex;align-items:center;gap:13px;margin-bottom:23px}
+    .group-index{font-size:12px;font-weight:850;color:#bf844a}
+    .group-head h2{margin:0;font-size:22px;font-weight:830;letter-spacing:-.055em}
+    .group-count{color:#7a8c7e;background:#e9eee8;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:750}
+    .group-rule{height:1px;background:var(--line);flex:1}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .project{min-width:0;background:white;border:1px solid #e5e8e1;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 15px #17261a07;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
+    .project:hover{transform:translateY(-5px);box-shadow:0 16px 40px #263c301a;border-color:#bbc6b9}
+    .art{height:166px;background:linear-gradient(125deg,var(--art-start),var(--art-end));color:white;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;padding:22px;isolation:isolate}
+    .art:before{content:"";position:absolute;top:-160px;right:-140px;width:320px;height:320px;border:58px solid #ffffff16;border-radius:50%;z-index:-1}
+    .art:after{content:"";position:absolute;right:-60px;bottom:-180px;width:280px;height:280px;border-radius:50%;background:#ffffff13;z-index:-1}
+    .art-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .art-type{font-size:10px;letter-spacing:.18em;font-weight:850;opacity:.9}
+    .art-open{border-radius:50%;height:30px;width:30px;display:grid;place-items:center;border:1px solid #ffffff6b}
+    .art-name{position:relative;font-size:clamp(20px,2vw,28px);font-weight:850;letter-spacing:-.055em;line-height:1.16;max-width:95%;overflow-wrap:anywhere}
+    .art-number{position:absolute;right:15px;top:-39px;font-size:150px;font-weight:900;line-height:1;color:#ffffff15;letter-spacing:-.13em;pointer-events:none}
+    .card-content{padding:19px 20px 17px;display:flex;flex-direction:column;flex:1}
+    .card-eyebrow{color:#bb8452;text-transform:uppercase;letter-spacing:.09em;font-size:10px;font-weight:800}
+    .card-title{font-size:19px;line-height:1.33;font-weight:850;letter-spacing:-.05em;margin:9px 0 9px;overflow-wrap:anywhere}
+    .card-desc{color:#69776c;font-size:12px;line-height:1.85;margin:0 0 18px;flex:1}
+    .card-foot{border-top:1px solid #eef0eb;display:flex;justify-content:space-between;gap:9px;align-items:center;padding-top:13px;color:#7b887e;font-size:11px}
+    .host{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+    .visit{flex:none;font-weight:850;color:#466452;display:flex;align-items:center;gap:5px}
+    .empty{display:none;text-align:center;border:1px dashed #d9ddd5;border-radius:12px;padding:65px 24px;margin-top:42px;color:var(--muted);background:#fff}
+    .empty h2{color:var(--ink);font-size:20px;margin:0 0 5px}
+    .empty p{font-size:13px;margin:0 0 16px}
+    .reset{padding:10px 17px;background:var(--dark);color:#fff;border-radius:8px;border:0;font-size:12px;font-weight:750}
+    .footer{background:var(--dark);color:#e7ede6}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:94px;font-size:12px}
+    .footer strong{font-size:18px;letter-spacing:-.045em}
+    .footer small{color:#bacbc0;font-size:11px}
+    @media(max-width:1050px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:690px){.wrap{width:min(100% - 32px,1140px)}.header-inner{min-height:68px}.brand{font-size:16px}.header-meta{font-size:10px}.hero{padding:51px 0 52px}h1{font-size:clamp(42px,11vw,64px)}.hero-bottom{align-items:start;flex-direction:column;gap:23px}.hero-copy{font-size:13px}.hero-count strong{font-size:39px}.directory{padding-top:29px}.tools{align-items:stretch;flex-direction:column;gap:16px}.tools-title{font-size:21px}.search{width:100%}.filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:19px}.filter{flex:none}.group{margin-top:34px}.group-head h2{font-size:20px}.cards{grid-template-columns:1fr;gap:17px}.art{height:180px}.footer-inner{min-height:112px;flex-wrap:wrap;padding:20px 0}.footer small{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Project Index หน้าหลัก"><span class="brand-mark" aria-hidden="true">P.</span><span>PROJECT INDEX</span></a>
+      <span class="header-meta"><span class="status-dot" aria-hidden="true"></span> DIGITAL PROJECT DIRECTORY</span>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Selected digital projects / 2026</div>
+        <h1>Explore the <span class="hero-highlight">work.</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-copy">รวมโปรเจกต์ดิจิทัลไว้ในที่เดียว ทั้งเว็บแอป เว็บไซต์ และ Landing Page เลือกหมวดหมู่ ค้นหาชื่อโปรเจกต์ และเปิดชมผลงานจริงได้ทันที</p>
+          <div class="hero-count"><strong id="total-count">8</strong><span>PROJECTS</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="directory wrap" aria-labelledby="directory-title">
+      <div class="tools">
+        <div><h2 class="tools-title" id="directory-title">Project Directory</h2><p class="tools-note" id="results-summary" aria-live="polite">แสดงทุกโปรเจกต์</p></div>
+        <label class="search" for="search-input">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="search-input" type="search" autocomplete="off" placeholder="ค้นหาโปรเจกต์..." aria-label="ค้นหาโปรเจกต์">
+          <button type="button" class="clear" id="clear-search" aria-label="ล้างคำค้นหา">✕</button>
+        </label>
+      </div>
+      <nav class="filters" id="filters" aria-label="หมวดหมู่โปรเจกต์"></nav>
+      <div id="project-groups"></div>
+      <div class="empty" id="no-results" role="status"><h2>ไม่พบโปรเจกต์</h2><p>ลองใช้คำค้นหาอื่น หรือแสดงโปรเจกต์ทั้งหมด</p><button class="reset" id="reset-filters" type="button">แสดงทั้งหมด</button></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><strong>PROJECT INDEX<span style="color:#f1bb76">.</span></strong><small>Digital projects, organized in one place.</small></div></footer>
+  <script>
+    // เพิ่มหรือแก้ลิงก์ที่นี่เท่านั้น: { title, category, description, url, label, colors }
+    // ทุกส่วนของเว็บใช้ข้อมูลจากอาร์เรย์ PROJECTS โดยไม่เรียก API หรือฐานข้อมูล
+    const CATEGORIES = [
+      {id:'web-app', name:'Web Applications'},
+      {id:'website', name:'Websites'},
+      {id:'landing-page', name:'Landing Pages'},
+      {id:'other', name:'Other Projects'}
+    ];
+    const PROJECTS = [
+      {title:'LEUKNUENG',category:'web-app',description:'แพลตฟอร์มสร้างโพล ตั้งคำถาม และแลกเปลี่ยนความคิดเห็นในชุมชน',url:'https://leuknueng.pages.dev/#/',label:'COMMUNITY PLATFORM',colors:['#433953','#806484'],tags:'โพล ชุมชน polling'},
+      {title:'DINproperty',category:'web-app',description:'แพลตฟอร์มรับความต้องการซื้อ–ขายอสังหาริมทรัพย์ และระบบจับคู่ข้อมูลหลังบ้าน',url:'https://dinproperty.sj4dome.workers.dev/',label:'PROPERTY NETWORK',colors:['#69463b','#b38260'],tags:'อสังหาริมทรัพย์ matching'},
+      {title:'KH14 Community Intelligence',category:'web-app',description:'ระบบทะเบียนครัวเรือน แดชบอร์ดข้อมูลชุมชน และเครื่องมือสำรวจอัจฉริยะ',url:'https://kh14-community.sj4dome.workers.dev/',label:'COMMUNITY DATA',colors:['#20525a','#3d9893'],tags:'ชุมชน survey dashboard KH14'},
+      {title:'NORTH CIRCLE',category:'website',description:'เว็บไซต์ท่องเที่ยวภาคเหนือ รวมโปรแกรมทัวร์ กิจกรรม และข้อมูลการเดินทาง',url:'https://northcircle.fivethousandyears.org/',label:'TRAVEL WEBSITE',colors:['#28554c','#7c9b81'],tags:'ท่องเที่ยว เชียงใหม่ เชียงราย'},
+      {title:'Doi Suthep Vipassana',category:'website',description:'เว็บไซต์ข้อมูลศูนย์วิปัสสนาวัดพระธาตุดอยสุเทพ หลักสูตรและการเตรียมตัว',url:'https://www.fivethousandyears.org/',label:'INFORMATION WEBSITE',colors:['#775c4e','#c2a079'],tags:'วัด วิปัสสนา meditation'},
+      {title:'KHOM Festival',category:'landing-page',description:'เว็บไซต์เทศกาลโคมลอยเชียงใหม่ พร้อมรายละเอียดสถานที่ บัตร และข้อมูลสองภาษา',url:'https://lanternfestival.fivethousandyears.org/',label:'EVENT LANDING PAGE',colors:['#30334c','#67647e'],tags:'ยี่เป็ง Yi Peng lantern tickets'},
+      {title:'Project Link 06',category:'other',description:'ลิงก์ผลงานเพิ่มเติม — อยู่ระหว่างยืนยันชื่อและรายละเอียดโครงการ',url:'https://tinyurl.com/ttxagi',label:'EXTERNAL PROJECT',colors:['#4c5860','#808a91'],tags:'ลิงก์ อื่นๆ'},
+      {title:'Project Link 07',category:'other',description:'ลิงก์ผลงานเพิ่มเติม — อยู่ระหว่างยืนยันชื่อและรายละเอียดโครงการ',url:'https://tinyurl.com/m0014',label:'EXTERNAL PROJECT',colors:['#505958','#89918b'],tags:'ลิงก์ อื่นๆ'}
+    ];
+    const $ = id => document.getElementById(id);
+    const filters = $('filters'), groups = $('project-groups'), search = $('search-input');
+    let activeCategory = 'all';
+    const urlIsSafe = value => {try{const u=new URL(value);return u.protocol==='https:'||u.protocol==='http:';}catch{return false;}};
+    // ใช้ DOM API และ textContent สำหรับข้อมูลโปรเจกต์ (ไม่ใช้ innerHTML)
+    function el(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
+    function iconArrow(){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('width','15');svg.setAttribute('height','15');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.8');svg.setAttribute('stroke-linecap','round');svg.setAttribute('aria-hidden','true');const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M7 17 17 7M8 7h9v9');svg.append(path);return svg;}
+    function makeCard(p,index,categoryName){
+      const card=el('a','project');card.href=p.url;card.target='_blank';card.rel='noopener noreferrer';card.setAttribute('aria-label','เปิด '+p.title+' ในแท็บใหม่');
+      const art=el('div','art');art.style.setProperty('--art-start',p.colors[0]);art.style.setProperty('--art-end',p.colors[1]);
+      const artTop=el('div','art-top'), artType=el('span','art-type',p.label), open=el('span','art-open');open.append(iconArrow());artTop.append(artType,open);
+      const number=el('span','art-number',String(index+1).padStart(2,'0'));number.setAttribute('aria-hidden','true');
+      art.append(artTop,number,el('div','art-name',p.title));
+      const content=el('div','card-content');content.append(el('span','card-eyebrow',categoryName),el('h3','card-title',p.title),el('p','card-desc',p.description));
+      const foot=el('div','card-foot'), host=el('span','host',new URL(p.url).hostname.replace(/^www\./,'')), visit=el('span','visit','เปิดเว็บไซต์');visit.append(iconArrow());foot.append(host,visit);content.append(foot);card.append(art,content);return card;
+    }
+    function drawFilters(){
+      filters.replaceChildren();
+      const items=[{id:'all',name:'ทั้งหมด'},...CATEGORIES.filter(c=>PROJECTS.some(p=>p.category===c.id))];
+      for(const item of items){const count=item.id==='all'?PROJECTS.length:PROJECTS.filter(p=>p.category===item.id).length;const btn=el('button','filter'+(activeCategory===item.id?' active':''));btn.type='button';btn.setAttribute('aria-pressed',String(activeCategory===item.id));btn.append(document.createTextNode(item.name),el('b','',String(count)));btn.addEventListener('click',()=>{activeCategory=item.id;render();});filters.append(btn);}
+    }
+    function render(){
+      const term=search.value.trim().toLocaleLowerCase();
+      const matched=PROJECTS.filter(p=>(activeCategory==='all'||p.category===activeCategory)&&(!term||[p.title,p.description,p.tags].join(' ').toLocaleLowerCase().includes(term))&&urlIsSafe(p.url));
+      $('total-count').textContent=String(PROJECTS.length);
+      $('results-summary').textContent=term||activeCategory!=='all'?`พบ ${matched.length} จาก ${PROJECTS.length} โปรเจกต์`:`แสดงทั้งหมด ${PROJECTS.length} โปรเจกต์`;
+      $('clear-search').classList.toggle('visible',Boolean(search.value));
+      drawFilters();groups.replaceChildren();
+      let groupNumber=0;
+      for(const category of CATEGORIES){const projects=matched.filter(p=>p.category===category.id);if(!projects.length)continue;groupNumber++;
+        const section=el('section','group'), head=el('div','group-head'), indexLabel=el('span','group-index',String(groupNumber).padStart(2,'0'));
+        head.append(indexLabel,el('h2','',category.name),el('span','group-count',String(projects.length)),el('div','group-rule'));
+        const grid=el('div','cards');for(const p of projects)grid.append(makeCard(p,PROJECTS.indexOf(p),category.name));section.append(head,grid);groups.append(section);
+      }
+      $('no-results').style.display=matched.length?'none':'block';
+    }
+    function reset(){activeCategory='all';search.value='';render();search.focus();}
+    search.addEventListener('input',render);
+    $('clear-search').addEventListener('click',()=>{search.value='';render();search.focus();});
+    $('reset-filters').addEventListener('click',reset);
+    render();
+  </script>
+</body>
+</html>
